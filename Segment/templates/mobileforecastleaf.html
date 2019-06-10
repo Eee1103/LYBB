@@ -1,0 +1,86 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zh-Han">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"><!--针对手机用户，实现缩放-->
+	<meta name="description" content="（对网站的介绍）" />
+	<meta name="author" content="NJAU" />
+	<title>AI梨叶病斑检测</title>
+	<!--css-->
+	<link href="{%static 'css/bootstrap.min.css'%}" rel="stylesheet" />
+	<link href="{%static 'css/font-awesome.css'%}" rel="stylesheet" />
+	<link href="{%static 'css/mobile.css'%}" rel="stylesheet" />
+</head>
+<style type="text/css">
+	body{
+		background-image:url("{%static 'img/mobile/bg2.jpg'%}");
+		height:100%;
+		background-repeat: no-repeat;
+	}
+	body,html{
+	    top: 0px;
+	　　bottom: 0px;
+	　　width: 100%;
+	　　height: 100%;
+  	    overflow: hidden;
+	}
+	#result{
+		background-image:url("{%static 'img/mobile/bg2.png'%}");}
+  
+</style>
+<body id="body">
+
+	<div id="camera">
+		<img src="{%static 'img/mobile/LOGO.png'%}" width="30%" style="margin-top:20%;margin-left: 35%">
+		<img src="{%static 'img/mobile/ai.png'%}" width="10%" style="margin-top: 10%;margin-left: 45%">
+		<div>
+		<img src="{%static 'img/mobile/name.png'%}" width="70%" style="margin-left:15%;margin-top:5%">
+		</div>
+	</div>
+	<div id="result" style="display: none;background-color: white;">
+		<div id="loading">
+			<div id="Loading_img" style="color: black;padding:60% 0 0 30%"></div>
+			<h4 style="color:black;margin-top:10%;margin-left:20%" class="text-center">病斑检测中请稍等...</h4>
+		</div>
+		<div id="resultdisplay" style="display: none;">
+		    <a href="/static/target.png" download="/static/target.png">
+             <img id="resultimg" src="/static/target.png" style="width:100%">
+            </a>
+			
+		</div>
+		<div id="info" class="container" style="display: none">
+			<div class="row">
+				<div class="col-xs-6">
+					<img  src="{%static 'img/mobile/result.png'%}">
+				</div>
+				<div class="col-xs-6">
+					<p id="message" style="margin-top:30px;font-size: 50px"></p>
+				</div>
+			</div>
+			<p id="return" style="border:solid;border-color: black;margin-top:10%;margin-left:12%;margin-right:12%;padding:15px 0 15px 0;font-size: 20px;display: none" class="text-center">返回主页</p>
+		</div>
+	</div>
+	<div >
+		<canvas id='canvas' width='400' height='400' style="display: none"></canvas>
+	</div>
+	<div id="infobtn">
+		<a href="javascript:void(0)" class="up-file"><input id="newTack"style="border:solid;border-color: black;margin-left:32%;margin-right:32%;padding:15px 0 15px 0;font-size: 20px;opacity: 0" type="file" capture="environment" accept="image/*" onchange="selectImg(this)"></a>
+		<label id="tacklabel" for="newTack" style="margin-left:30%;margin-right:20%;border:solid;border-color:black;color: black;font-size: 1.25em;font-weight: 700;width:40%;padding: 15px 0 15px 0;background-color: #FFFAF0;border-radius: 10px;"class="text-center"><i class="fa fa-camera" style="font-size: 20px;color: #9C9C9C;margin-right: 5px"></i>拍照预测</label>
+
+		<label id="uploadlabel" for="newUpload" style="margin-top:5%;margin-left:30%;margin-right:20%;color:black;font-size: 1.15em;font-weight: 700;width:40%;padding: 15px 0 15px 0;"class="text-center"><i class="fa fa-folder" style="font-size: 20px;color: black;margin-right: 5px"></i><u>从相册上传</u></label>
+		<a href="javascript:void(0)" class="up-file"><input id="newUpload"style="border:solid;border-color: black;margin-left:32%;margin-right:32%;padding:15px 0 15px 0;font-size: 20px;opacity: 0" type="file" accept="image/*"  onchange="selectImg(this)"></a>
+		
+		<!--<input type="file" accept="image/*" name="">-->
+	</div>
+	<img  id ="temp" src="{%static 'resultimg/'%}" alt="" style="display:none">
+
+
+
+</body>
+<script src="{%static 'js/jquery-3.3.1.min.js'%}"></script>
+<script src="{%static 'js/spin.min.js'%}"></script>
+<script type="text/javascript" src="{%static 'js/mobile.js'%}"></script>
+<script type="text/javascript">
+</script>
+</html>
